@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bs.dao.IUserDao">
+
+    <resultMap type="com.bs.bean.User" id="UserMap">
+        <id property="id" column="id" javaType="java.lang.Long" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+    </resultMap>
+
+
+    <select id="queryByUsername" resultMap="UserMap">
+        select * from user where username=#{username}
+    </select>
+    <insert id="save" >
+        insert into USER (id,username,password)
+        values(#{id},#{username},#{password})
+    </insert>
+    <!--<insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into USER (username,password)
+        values(#{username},#{password})
+    </insert>-->
+    <update id="update">
+        update user set username=#{username},password=#{password}
+        where id=#{id}
+    </update>
+    <delete id="delete">
+        delete from user where id=#{id}
+    </delete>
+
+
+</mapper>
